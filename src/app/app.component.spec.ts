@@ -1,11 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let el: DebugElement;
+
 
 
   beforeEach(waitForAsync(() => {
@@ -14,27 +18,30 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [ RouterTestingModule.withRoutes([])],
-    }).compileComponents();
+    }).compileComponents().then(() => {
+      fixture = TestBed.createComponent(AppComponent);
+      // cardsListcomponent = fixture.componentInstance;
+      el = fixture.debugElement;
+      fixture.detectChanges();
+    });;
   }));
 
   it('should create the app', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    // const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   }));
 
-  it('should have menu labels', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const app = fixture.nativeElement;
-    const menuItems = app.querySelectorAll('ion-label');
+  fit('should have menu labels', waitForAsync(() => {
+    // const fixture = TestBed.createComponent(AppComponent);
+    const menuItems = el.queryAll(By.css('ion-label'));
     expect(menuItems.length).toEqual(12);
-    expect(menuItems[0].textContent).toContain('Inbox');
-    expect(menuItems[1].textContent).toContain('Outbox');
+    expect(menuItems[0].nativeElement.textContent).toContain('Inbox');
+    expect(menuItems[1].nativeElement.textContent).toContain('Outbox');
   }));
 
   it('should have urls', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    // const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
