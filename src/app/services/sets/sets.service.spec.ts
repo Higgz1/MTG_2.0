@@ -6,7 +6,7 @@ import {
 import { SetsService } from './sets.service';
 import { mockSetsData } from 'src/assets/mockData';
 
-fdescribe('SetsService', () => {
+describe('SetsService', () => {
   let setService: SetsService;
   let httpTestingController: HttpTestingController;
   const baseUrl = 'https://api.scryfall.com/sets';

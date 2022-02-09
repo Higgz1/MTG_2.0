@@ -32,7 +32,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  fit('should have menu labels', waitForAsync(() => {
+  it('should have menu labels', waitForAsync(() => {
     // const fixture = TestBed.createComponent(AppComponent);
     const menuItems = el.queryAll(By.css('ion-label'));
     expect(menuItems.length).toEqual(12);
