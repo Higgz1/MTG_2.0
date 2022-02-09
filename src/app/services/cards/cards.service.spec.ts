@@ -6,7 +6,7 @@ import { TestBed } from '@angular/core/testing';
 import { CardsService } from './cards.service';
 import { mockCardsData } from 'src/assets/mockData';
 
-fdescribe('CardsService', () => {
+describe('CardsService', () => {
   let cardService: CardsService;
   let httpTestingController: HttpTestingController;
 
